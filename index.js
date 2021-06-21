@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const express = require("express");
 const app = express();
 
@@ -12,6 +14,7 @@ app.use(express.static("./app/public"));
 const router = require("./app/router");
 app.use(router);
 
+// Serveur
 app.listen(3000, () => {
   console.log("Your server running on port 3000...");
 });
