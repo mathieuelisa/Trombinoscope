@@ -12,6 +12,8 @@ router.get("/promos", promoController.promos);
 
 router.get("/promos/:id", promoController.promo);
 
-router.get("/promos/:id/students", studentController.students);
+router.get("/promos/:id/students", studentController.studentsInPromo);
+
+router.get("/student/:id", studentController.student);
 
 module.exports = router;
