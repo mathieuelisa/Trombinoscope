@@ -1,25 +1,21 @@
-const client = require("./database");
+// Controller for get the promos
+
+const dataMapper = require("./dataMapper");
 
 exports.promos = (req, res) => {
-  client.query(`SELECT * FROM promo`, (error, resultats) => {
+  dataMapper.getPromos((error, result) => {
     if (error) console.log(error);
     else {
-      res.render("promos", {
-        promos: resultats.rows,
-      });
+      res.render("promos", { promos: result.rows });
     }
   });
 };
 
 exports.promo = (req, res) => {
-  client.query(
-    `SELECT * FROM promo WHERE id = $1`,
-    [req.params.id],
-    (err, result) => {
-      if (err) console.log(err);
-      else {
-        res.render("promo", { promo: result.rows[0] });
-      }
+  dataMapper.getPromo(req.params.id, (error, resultat) => {
+    if (error) console.log(error);
+    else {
+      res.render("promo", { promo: resultat.rows[0] });
     }
-  );
+  });
 };
